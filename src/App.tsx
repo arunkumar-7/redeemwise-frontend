@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div>
-      <h1>RedeemWise</h1>
+    <div className="min-h-screen flex items-center justify-center">
+      <h1 className="text-4xl font-bold">RedeemWise</h1>
     </div>
   );
 }
