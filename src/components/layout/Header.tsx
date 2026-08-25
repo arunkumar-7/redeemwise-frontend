@@ -1,16 +1,27 @@
+import Container from "../ui/Container";
+
 function Header() {
   return (
-    <header className="bg-gray-900 border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <span className="text-xl font-bold text-white">RedeemWise</span>
+    <header className="sticky top-0 z-50 bg-white border-b border-border-default">
+      <Container>
+        <div className="flex items-center justify-between h-[72px]">
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-bold text-navy">RedeemWise</span>
           </div>
-          <nav className="flex items-center space-x-6">
-            <span className="text-gray-400 text-sm">Navigation</span>
+
+          <nav className="hidden md:flex items-center gap-6">
+            <span className="text-[0.9375rem] font-medium text-text-secondary cursor-default">
+              Nav Links
+            </span>
           </nav>
+
+          <div className="flex items-center gap-3">
+            <span className="text-[0.9375rem] font-semibold text-primary cursor-default">
+              CTA Button
+            </span>
+          </div>
         </div>
-      </div>
+      </Container>
     </header>
   );
 }
