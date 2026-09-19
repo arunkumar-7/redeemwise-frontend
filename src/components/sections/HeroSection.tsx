@@ -44,18 +44,13 @@ export function HeroSection() {
 
           {/* CTA group — side-by-side on desktop per spec mistake #2 */}
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Button href="#cta" size="large">
+            <Button to="/search" size="large">
               Find Best Redemption
               <ArrowRight size={18} strokeWidth={2.2} />
             </Button>
             <Button href="#how-it-works" size="large" variant="secondary">
               {HERO.secondaryCta}
             </Button>
-            {/*
-              NOTE: onClick handlers are intentionally absent — Phase 1 has no
-              business logic. CTAs navigate to the final CTA anchor; the
-              anchor will be re-pointed at /search in Phase 2.
-            */}
           </div>
 
           {/* Trust indicators */}

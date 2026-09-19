@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 type ButtonSize = 'medium' | 'large';
@@ -7,7 +8,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: ReactNode;
+  /** External/class anchor target (renders `<a>`). */
   href?: string;
+  /** Internal SPA route (renders react-router `Link`). */
+  to?: string;
 }
 
 const BASE =
@@ -35,12 +39,13 @@ const SIZES: Record<ButtonSize, string> = {
   large: 'px-8 py-4 text-[15px]',
 };
 
-/** Primary / secondary / ghost button per spec §8. Renders an `<a>` when `href` is set. */
+/** Primary / secondary / ghost button per spec §8. Renders `<a>` when `href` is set, `Link` when `to` is set. */
 export function Button({
   variant = 'primary',
   size = 'medium',
   icon,
   href,
+  to,
   className = '',
   children,
   ...rest
@@ -53,6 +58,15 @@ export function Button({
         {children}
         {icon}
       </a>
+    );
+  }
+
+  if (to !== undefined) {
+    return (
+      <Link to={to} className={classes}>
+        {children}
+        {icon}
+      </Link>
     );
   }
 

@@ -1,30 +1,37 @@
-import { Navbar } from './components/sections/Navbar';
-import { HeroSection } from './components/sections/HeroSection';
-import { StatsSection } from './components/sections/StatsSection';
-import { HowItWorksSection } from './components/sections/HowItWorksSection';
-import { BenefitsSection } from './components/sections/BenefitsSection';
-import { ActionPreviewSection } from './components/sections/ActionPreviewSection';
-import { TestimonialsSection } from './components/sections/TestimonialsSection';
-import { FAQSection } from './components/sections/FAQSection';
-import { CTASection } from './components/sections/CTASection';
-import { Footer } from './components/sections/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { FlowProvider } from './context/FlowContext';
+import { AppLayout } from './components/app/AppLayout';
+import LandingPage from './pages/LandingPage';
+import SearchPage from './pages/SearchPage';
+import PointsPage from './pages/PointsPage';
+import ResultsPage from './pages/ResultsPage';
+import DashboardPage from './pages/DashboardPage';
+import NotFoundPage from './pages/NotFoundPage';
 
-/** Phase 1: marketing landing page only — no routes, no API, no auth. */
+/**
+ * Phase 2: application routing. The Phase 1 landing page stays intact at `/`;
+ * all application routes share FlowProvider + the AppLayout shell.
+ */
 export default function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <main>
-        <HeroSection />
-        <StatsSection />
-        <HowItWorksSection />
-        <BenefitsSection />
-        <ActionPreviewSection />
-        <TestimonialsSection />
-        <FAQSection />
-        <CTASection />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <FlowProvider>
+        <Routes>
+          {/* Phase 1 marketing site — unchanged composition */}
+          <Route path="/" element={<LandingPage />} />
+
+          {/* Application experience — shared shell with step indicator */}
+          <Route element={<AppLayout />}>
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/points" element={<PointsPage />} />
+            <Route path="/results" element={<ResultsPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Route>
+
+          {/* Catch-all 404 */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </FlowProvider>
+    </BrowserRouter>
   );
 }

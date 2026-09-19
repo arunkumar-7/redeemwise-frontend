@@ -52,7 +52,7 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:block">
-          <Button href="#cta">{CTA_LABEL}</Button>
+          <Button to="/search">{CTA_LABEL}</Button>
         </div>
 
         {/* Mobile toggle */}
@@ -83,7 +83,7 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <Button href="#cta" className="mt-4 w-full">
+          <Button to="/search" className="mt-4 w-full">
             {CTA_LABEL}
           </Button>
         </div>
